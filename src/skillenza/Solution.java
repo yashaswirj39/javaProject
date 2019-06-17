@@ -1,13 +1,14 @@
 package skillenza;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Solution {
-    private static String result(List<Integer> list, int sum){
-        System.out.println("list --> "+list);
+class Solution {
+    static String result(List<Integer> list, int sum){
         List<Integer> compareList = new ArrayList<>(list);
+        Collections.sort(compareList, Collections.reverseOrder());
         boolean flag = false;
         for (int k : compareList){
             list.remove(list.indexOf(k));
@@ -29,13 +30,16 @@ public class Solution {
                 }
             }
         }
-        if (flag == true)
+        if (flag == true) {
             return "YES";
-        else return "NO";
+        } else {
+            return "NO";
+        }
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int t = scanner.nextInt();
+        long millis = System.currentTimeMillis();
         while (t-- > 0) {
             int n = scanner.nextInt();
             List<Integer> list = new ArrayList<>();
@@ -45,5 +49,6 @@ public class Solution {
             int sum = scanner.nextInt();
             System.out.println(result(list, sum));
         }
+        System.out.println(System.currentTimeMillis() - millis);
     }
 }
